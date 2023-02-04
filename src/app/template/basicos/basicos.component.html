@@ -4,33 +4,35 @@
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="guardar(formularioBasico.value)" #formularioBasico = "ngForm"
-        autocomplete="off">
+        <form (ngSubmit)="guardar(formularioBasico.value)" #formularioBasico="ngForm" autocomplete="off">
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
-                    <input type="text" ngModel name="producto" required
-                    class="form-control" placeholder="Nombre Producto">
-                    <span class="form-text text-danger">Debe de ser de 3 dígitos</span>
+                    <input type="text" ngModel name="producto" required class="form-control"
+                        placeholder="Nombre Producto" minlength="3">
+                    <span class="form-text text-danger" 
+                    *ngIf="formularioBasico.controls['producto']?.invalid &&
+                    formularioBasico.controls['producto']?.touched">
+                        Debe de ser de 3 dígitos
+                    </span>
                 </div>
             </div>
 
-            
+
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
-                    <input type="number" ngModel name="precio"
-                    class="form-control" placeholder="Precio Producto">
-                    
+                    <input type="number" ngModel name="precio" class="form-control" placeholder="Precio Producto">
+
                 </div>
             </div>
 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Existencia</label>
                 <div class="col-sm-9">
-                    <input type="number" ngModel name="existencia"
-                    class="form-control" placeholder="Existencia Producto">
-                    
+                    <input type="number" ngModel name="existencia" class="form-control"
+                        placeholder="Existencia Producto">
+
                 </div>
             </div>
 
@@ -50,6 +52,12 @@
     <div class="col">
         <span>Valid</span>
         <pre> {{ formularioBasico.valid }} </pre>
+
+        <span>Pristine</span>
+        <pre> {{ formularioBasico.pristine }} </pre>
+
+        <span>Touched</span>
+        <pre> {{ formularioBasico.touched }} </pre>
 
         <span>Value</span>
         <pre> {{ formularioBasico.value | json }} </pre>
