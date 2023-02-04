@@ -21,6 +21,11 @@ export class BasicosComponent implements OnInit {
       && this.formularioBasico?.controls['producto']?.touched;
   }
 
+  precioValido(): boolean {
+    return this.formularioBasico?.controls['precio']?.invalid
+      && this.formularioBasico?.controls['precio']?.touched;
+  }
+
   guardar() {
     console.log(this.formularioBasico);
   }
