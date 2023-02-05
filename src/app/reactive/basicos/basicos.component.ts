@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styles: [
   ]
 })
-export class BasicosComponent {
+export class BasicosComponent implements OnInit{
   /*
   miFormulario: FormGroup = new FormGroup({
     "nombre": new FormControl("Procesador"),
@@ -17,15 +17,33 @@ export class BasicosComponent {
   */
   miFormulario: FormGroup = this.formBuilder.group({
     "nombre": ["", [Validators.required, Validators.minLength(3),]],
-    "precio": [0, [Validators.required, Validators.min(0)]],
-    "existencia": [0, [Validators.required, Validators.min(0)]]
+    "precio": [, [Validators.required, Validators.min(0)]],
+    "existencia": [, [Validators.required, Validators.min(0)]]
   })
 
   constructor(private formBuilder: FormBuilder) { }
 
+  ngOnInit(): void {
+    this.miFormulario.reset({
+      nombre: "RTX",
+      precio: 5000,
+      existencia: 0
+    })
+  }
+
   campoNoValido(campo: string) {
     return this.miFormulario.controls[campo].errors &&
       this.miFormulario.controls[campo].touched;
+  }
+
+  guardar() {
+    if (this.miFormulario.invalid) {
+      this.miFormulario.markAllAsTouched();
+      return;
+    }
+    
+    console.log(this.miFormulario.value);
+    this.miFormulario.reset();
   }
 
 }
