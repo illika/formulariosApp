@@ -4,11 +4,12 @@
 
 <div class="row">
     <div class="col">
-        <form autocomplete="off">
+        <form autocomplete="off" [formGroup]="miFormulario">
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" placeholder="Nombre Producto">
+                    <input type="text" class="form-control" placeholder="Nombre Producto"
+                    formControlName="nombre">
                     <span class="form-text text-danger">
                         Debe de ser de 3 dígitos
                     </span>
@@ -46,28 +47,18 @@
     </div>
 </div>
 
-<!--
 <div class="row">
     <div class="col">
         <span>Valid</span>
-        <pre> {{ formularioBasico.valid }} </pre>
+        <pre> {{ miFormulario.valid }} </pre>
 
         <span>Pristine</span>
-        <pre> {{ formularioBasico.pristine }} </pre>
+        <pre> {{ miFormulario.pristine }} </pre>
 
         <span>Touched</span>
-        <pre> {{ formularioBasico.touched }} </pre>
+        <pre> {{ miFormulario.touched }} </pre>
 
         <span>Value</span>
-        <pre> {{ formularioBasico.value | json }} </pre>
-
-        <hr />
-
-        <span>CustomDirective</span>
-        <div *ngIf="formularioBasico.controls['existencia']">
-            <pre>{{formularioBasico.controls['existencia'].errors  | json}}</pre>
-        </div>
-
+        <pre> {{ miFormulario.value | json }} </pre>
     </div>
 </div>
--->
