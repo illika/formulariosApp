@@ -16,8 +16,9 @@
         <label class="col-sm-3 form-label"> Agregar </label>
         <div class="col-sm-9">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Agregar favorito" (keyup.enter)="1">
-                <button class="btn btn-outline-primary" type="button" (click)="1">
+                <input type="text" class="form-control" [formControl]="nuevoFavorito" placeholder="Agregar favorito"
+                    (keyup.enter)="agregarFavorito()">
+                <button class="btn btn-outline-primary" type="button" (click)="agregarFavorito()">
                     Agregar
                 </button>
             </div>
@@ -27,14 +28,13 @@
     <div class="mb-3 row">
         <label class="col-sm-3 form-label"> Favoritos </label>
         <div class="col-sm-9" formArrayName="favoritos">
-            <div class="input-group mb-1" 
-            *ngFor="let favorito of favoritoArr.controls; let i = index">
+            <div class="input-group mb-1" *ngFor="let favorito of favoritoArr.controls; let i = index">
                 <input class="form-control" [formControlName]="i">
                 <button class="btn btn-outline-danger" type="button" (click)="1">
                     Borrar
                 </button>
             </div>
-        </div>    
+        </div>
     </div>
 
     <div class="row">
@@ -51,15 +51,10 @@
 
 <br />
 
-
 <span>Value</span>
 <pre>{{miFormulario.value| json}}</pre>
+<br />
 
-<!--
-<div class="row">
-    <div class="col">
-        <span>Persona</span>
-        <pre>{{persona | json}}</pre>
-    </div>
-</div>
--->
+<span>Agregar Favorito</span>
+<pre>{{nuevoFavorito.value| json}}</pre>
+<pre>{{nuevoFavorito.valid| json}}</pre>
