@@ -18,7 +18,10 @@ export class RegistrarComponent implements OnInit {
     nombre: ["", [Validators.required, Validators.pattern(this.validatorService.nombreApellidoPattern)]],
     email: ["", [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     username: ["", [Validators.required, this.validatorService.noUsername]],
-    password: ["", [Validators.required]],
+    password: ["", [Validators.required, Validators.minLength(3)]],
+    password2: ["", [Validators.required]],
+  }, {
+    validators: [this.validatorService.camposIguales("password", "password2")]
   });
 
 
