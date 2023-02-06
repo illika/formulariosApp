@@ -16,6 +16,19 @@ export class SwitchesComponent implements OnInit {
       ...this.persona,
       condiciones: true,
     });
+    /*
+        this.miFormulario.get("condiciones")?.valueChanges
+        .subscribe((console.log));
+    */
+
+    this.miFormulario.valueChanges.subscribe(({condiciones, ...rest}) => {
+      // (form)
+      // 1. ELimina la variable del objeto (referencia) 
+      // delete form.condiciones;
+
+
+      this.persona = rest;
+    })
   }
 
   miFormulario: FormGroup = this.fb.group({
@@ -27,5 +40,12 @@ export class SwitchesComponent implements OnInit {
   persona = {
     genero: "F",
     notificaciones: true
+  }
+
+  guardar() {
+    const formValue = { ...this.miFormulario.value };
+    delete formValue.condiciones;
+
+    this.persona = formValue;
   }
 }

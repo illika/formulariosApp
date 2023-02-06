@@ -1,21 +1,19 @@
 <h2>Reactivo <small>Switches</small> </h2>
 <br />
 
-<form [formGroup]="miFormulario">
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
 
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label"> Género </label>
         <div class="col-sm-9">
             <div class="form-check">
-                <input class="form-check-input" formControlName="genero" type="radio" value="M"
-                    id="masculino">
+                <input class="form-check-input" formControlName="genero" type="radio" value="M" id="masculino">
                 <label class="form-check-label" for="masculino">
                     Masculino
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" formControlName="genero" type="radio" value="F" 
-                    id="femenino">
+                <input class="form-check-input" formControlName="genero" type="radio" value="F" id="femenino">
                 <label class="form-check-label" for="femenino">
                     Femenino
                 </label>
@@ -28,10 +26,8 @@
         <label class="col-sm-3 col-form-label"> Notificaciones </label>
         <div class="col-sm-9 mt-2">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" 
-                
-                formControlName="notificaciones"
-                name="notificacion" role="switch" id="stchNotificacion">
+                <input class="form-check-input" type="checkbox" formControlName="notificaciones" name="notificacion"
+                    role="switch" id="stchNotificacion">
                 <label class="form-check-label" for="stchNotificacion">Recibi notificaciones</label>
             </div>
         </div>
@@ -42,9 +38,8 @@
         <label class="col-sm-3 col-form-label"> </label>
         <div class="col-sm-9">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="terminos" formControlName="condiciones" >
-                <label class="form-check-label" for="chkTerminos"
-                >
+                <input class="form-check-input" type="checkbox" name="terminos" formControlName="condiciones">
+                <label class="form-check-label" for="chkTerminos">
                     Términos y Condiciones
                 </label>
             </div>
@@ -53,7 +48,7 @@
 
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end" type="submit">
                 Guardar
             </button>
         </div>
