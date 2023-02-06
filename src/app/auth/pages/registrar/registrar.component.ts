@@ -47,4 +47,17 @@ export class RegistrarComponent implements OnInit {
     console.log("grabar")
   }
 
+  emailRquired() {
+    return this.miFormulario.get('email')?.hasError("required") &&
+      this.miFormulario.get('email')?.touched;
+  }
+  emailPattern() {
+    return this.miFormulario.get('email')?.hasError("pattern") &&
+      this.miFormulario.get('email')?.touched;
+  }
+  emailExiste() {
+    return this.miFormulario.get('email')?.hasError("emailTomado") &&
+      this.miFormulario.get('email')?.touched;
+  }
+
 }
