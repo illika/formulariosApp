@@ -26,6 +26,19 @@ export class RegistrarComponent implements OnInit {
     validators: [this.validatorService.camposIguales("password", "password2")]
   });
 
+  get emailErrorMsg(): string {
+    const errors = this.miFormulario.get("email")?.errors;
+    console.log(errors);
+    if (errors?.["required"]) {
+      return "Es requerido";
+    } else if (errors?.["pattern"]) {
+      return "No tiene formato";
+    } else if (errors?.["emailTomado"]) {
+      return "ya existe";
+    }
+    return "";
+  }
+
 
   ngOnInit(): void {
     this.miFormulario.reset({
@@ -47,17 +60,6 @@ export class RegistrarComponent implements OnInit {
     console.log("grabar")
   }
 
-  emailRquired() {
-    return this.miFormulario.get('email')?.hasError("required") &&
-      this.miFormulario.get('email')?.touched;
-  }
-  emailPattern() {
-    return this.miFormulario.get('email')?.hasError("pattern") &&
-      this.miFormulario.get('email')?.touched;
-  }
-  emailExiste() {
-    return this.miFormulario.get('email')?.hasError("emailTomado") &&
-      this.miFormulario.get('email')?.touched;
-  }
+
 
 }
